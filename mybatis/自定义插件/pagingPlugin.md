@@ -60,20 +60,21 @@ public class MyBatisConfig {
 3. 是否分页，每种情况的默认值，是否计数等，参考以下用例
 
 #### 举例说明
-pageSize | pageIndex | 含义 | 对应SQL | 是否count(*) |
----|---|---|---|---
-0 | 0 | 不分页 | 不分页 | 是，pageCount=1 |
-0 | 1 | 不分页 | 不分页 | 是，pageCount=1 |
-0 | -1 | 不分页 | 不分页 | 是，pageCount=1 |
--1 | 0 | 不分页 | 不分页 | 是，pageCount=1 |
--1 | 1 | 不分页 | 不分页 | 是，pageCount=1 |
--1 | -1 | 不分页 | 不分页 | 是，pageCount=1 |
-1 | 0 | 第一页，大小1 | limit 1 offset 0 | 是，pageCount=count/1 |
-1 | -1 | 第一页，大小1  | limit 1 offset 0 | 是，pageCount=count/1 |
-1 | 1 | 第一页，大小1 | limit 1 offset 0 | 是，pageCount=count/1 |
-10 | 2 | 第2页，大小10 | limit 10 offset 10 | 是，pageCount=count/10 |
-null | null | 默认第一页，大小50 | limit 50 offset 0 | 是，pageCount=count/50 |
--2 | 1 | 不分页 | 不分页| 否，pageCount=1 |
+
+| pageSize | pageIndex | 含义         | 对应SQL              | 是否count(*)           |
+|----------|-----------|------------|--------------------|----------------------|
+| 0        | 0         | 不分页        | 不分页                | 是，pageCount=1        |
+| 0        | 1         | 不分页        | 不分页                | 是，pageCount=1        |
+| 0        | -1        | 不分页        | 不分页                | 是，pageCount=1        |
+| -1       | 0         | 不分页        | 不分页                | 是，pageCount=1        |
+| -1       | 1         | 不分页        | 不分页                | 是，pageCount=1        |
+| -1       | -1        | 不分页        | 不分页                | 是，pageCount=1        |
+| 1        | 0         | 第一页，大小1    | limit 1 offset 0   | 是，pageCount=count/1  |
+| 1        | -1        | 第一页，大小1    | limit 1 offset 0   | 是，pageCount=count/1  |
+| 1        | 1         | 第一页，大小1    | limit 1 offset 0   | 是，pageCount=count/1  |
+| 10       | 2         | 第2页，大小10   | limit 10 offset 10 | 是，pageCount=count/10 |
+| null     | null      | 默认第一页，大小50 | limit 50 offset 0  | 是，pageCount=count/50 |
+| -2       | 1         | 不分页        | 不分页                | 否，pageCount=1        |
 
 #### 实现原理，自定义分页插件
 1. 我的思路：先研究mybatis-plus的插件是怎么写的，然后自己找到关键的地方，进行自定义逻辑的补全
