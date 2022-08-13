@@ -3,6 +3,7 @@
 ### 技术栈
 spring boot + postgresql + mybatis-plus
 
+
 ### 前菜
 多租户的场景，大概率是要考虑以下问题的
 1. 数据安全级别，和私有化部署能力
@@ -102,7 +103,7 @@ public class MyBatisConfig {
 /**
  * 租户功能配置
  */
-public class HrCoreTenantLineHandler implements TenantLineHandler {
+public class SystemTenantLineHandler implements TenantLineHandler {
     @Override
     public Expression getTenantId() {
         return new StringValue(TenantContext.getCurrentTenant());
@@ -181,5 +182,5 @@ class Student{
         b on a.school_id=b.id where b.name='xxx' and a.tenant_id='xxx'
     
 
-     所以这里无论是左表还是右表都加上了租户条件
+     所以这里无论是左表还是右表都加上了租户条件（sql是手写的，写错勿怪）
 ```
