@@ -7,3 +7,9 @@
 
 ## mybatis-plus 性能优化 相关
 - [mybatis-plus 性能优化：【大数据量mybatis序列化和反序列化慢的问题】](/mybatis/自定义插件/pagingPlugin.md)
+
+
+
+```java
+我的博客即将同步至腾讯云开发者社区，邀请大家一同入驻：https://cloud.tencent.com/developer/support-plan?invite_code=2gj0019g5m3og
+```
