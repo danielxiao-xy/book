@@ -6,7 +6,7 @@
 - [mybatis-plus 应用1：【自定义权限控制插件】](/mybatis/自定义插件/pagingPlugin.md)
 
 ## mybatis-plus 性能优化 相关
-- [mybatis-plus 性能优化：【大数据量mybatis序列化和反序列化慢的问题】](/mybatis/自定义插件/pagingPlugin.md)
+- [mybatis-plus 性能优化：【大数据量mybatis序列化和反序列化慢的问题】](/mybatis/性能优化/sequence.md)
 
 
 
