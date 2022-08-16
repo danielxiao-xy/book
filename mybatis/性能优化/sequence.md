@@ -26,6 +26,8 @@ springboot+mybatis plus +postgresql
 
 
  ### 方案1的问题（数据结构限制了发挥空间）
+
+
 ```java
 /**
  * 这个是我们的统一接口返回的结构，所以用流数，没有本质上解决问题，还是要等所有结果响应完毕后，才能返回给客户端
@@ -46,6 +48,8 @@ public class ResultDTO<T> implements Serializable {
 ### 方案2的问题（直接贴源码）
 1. 没有找到本质问题所在，mybatis是游标读，并行的可能性很低
 2. 开发难度大，无端增加无用的开发工作
+
+
 ```java
   private void handleRowValuesForSimpleResultMap(ResultSetWrapper rsw, ResultMap resultMap, ResultHandler<?> resultHandler, RowBounds rowBounds, ResultMapping parentMapping)
       throws SQLException {
@@ -73,6 +77,7 @@ public class ResultDTO<T> implements Serializable {
 | 推荐   | 推荐                   | 推荐            | 不是很推荐       | 
 
 #### 原理：充分利用mybatis-plus的typeHandle+拒绝反射
+
 ```java
     //这个是处理mybatis-plus的序列化的主要类
    package org.apache.ibatis.executor.resultset.DefaultResultSetHandler;
@@ -198,8 +203,9 @@ public class ResultDTO<T> implements Serializable {
 2. 分页操作是才query操作前的，所以可以先得知这次查询会返回多少条数据，根据返回数据的条数动态去选择序列化方式
 3. 如果结果条数大于5000，用typeHandler缓存的方式序列化对象，否则用mybatis-plus自带的反射机制进行序列化（动态选择）
 4. 看代码思路
+
+
 ```java
- 
  //这个是mybatis-plus的分页插件源码
   public boolean willDoQuery(Executor executor, MappedStatement ms, Object parameter, RowBounds rowBounds, ResultHandler resultHandler, BoundSql boundSql) thr
          ows SQLException {
